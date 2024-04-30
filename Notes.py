@@ -1,10 +1,18 @@
+import json
+
 # Загружаем заметки из файла
 def load_notes():
-    pass
+    try:
+        with open('Notes.json', 'r', encoding='utf-8') as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        data = dict()
+    return data
 
 # Сохраняем заметки в файл
 def save_note(data):
-    pass
+    with open('Notes.json', 'w', encoding='utf-8') as saveFile:
+        json.dump(data, saveFile, ensure_ascii=False, indent=4)
 
 # Печать заметок
 def printNotes(data, keys):

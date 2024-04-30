@@ -59,7 +59,13 @@ def del_note(data):
 
 # Поиск заметки по дате
 def dateSearch_note(data):
-    pass
+    date = input('Введите дату для фильтрации заметок в формате(dd-mm-yy): ')
+    print()
+    noteList = []
+    for i in range(1, len(data)+1):
+        if date in data[str(i)]["date"]:
+            noteList.append(str(i))
+    printNotes(data, noteList)
 
 # Интерфейс пользователя
 def interface():

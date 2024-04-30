@@ -70,6 +70,40 @@ def dateSearch_note(data):
 # Интерфейс пользователя
 def interface():
     data = load_notes()
+    var = 0
+    while var != '7':
+        print(
+            'Введите команду:\n'
+            '1. Добавить заметку\n'
+            '2. Вывести все заметки\n'
+            '3. Поиск заметки по дате\n'
+            '4. Редактировать заметку\n'
+            '5. Удалить заметку\n'
+            '6. Вывести заметку №\n'
+            '7. Выход'
+            )
+        print()
+        var = input('ожидание ввода команды: ')
+        while var not in ('1', '2', '3', '4', '5', '6', '7'):
+            print('некорректный ввод!')
+            var = input('ожидание ввода команды: ')
+        print()
+        match var:
+            case '1':
+                add_note(data)
+            case '2':
+                printNotes(data, data.keys())
+            case '3':
+                dateSearch_note(data)
+            case '4':
+                edit_note(data)
+            case '5':
+                del_note(data)
+            case '6':
+                printNotes(data, input('Введите номер заметки: '))
+            case '7':
+                print('Программа закрыта!')
+        print()
 
 if __name__ == '__main__':
     interface()

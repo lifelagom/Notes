@@ -16,7 +16,9 @@ def save_note(data):
 
 # Печать заметок
 def printNotes(data, keys):
-    pass
+    for key in keys:
+        if key in data.keys():
+            print(f'{key}. {data[key]['title']}\n{data[key]['text']}\nДата создания/изменения: {data[key]['date']}\n')
 
 # Запрашиваем у пользователя данные
 def input_title():
@@ -43,7 +45,7 @@ def dateSearch_note(data):
 
 # Интерфейс пользователя
 def interface():
-    pass
+    data = load_notes()
 
 if __name__ == '__main__':
     interface()

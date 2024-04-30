@@ -1,4 +1,5 @@
 import json
+import datetime
 
 # Загружаем заметки из файла
 def load_notes():
@@ -22,22 +23,39 @@ def printNotes(data, keys):
 
 # Запрашиваем у пользователя данные
 def input_title():
-    pass
+    return input('Введите заголовок заметки: ')
 
 def input_text():
-    pass
+    return input('Введите текст заметки: ')
 
 # Добавляем новую заметку
 def add_note(data: dict):
-    pass
+    date = datetime.datetime.now().strftime('%d-%m-%y (%H:%M:%S)')
+    data[str(len(data)+1)] = {'title': input_title(), 'text': input_text(), 'date': date}
+    save_note(data)
+    print('Заметка успешно сохранена')
 
 # Редактируем заметку
 def edit_note(data):
-    pass
+    id = input('Введите номер заметки для редактирования: ')
+    if id in data.keys():
+        print(data[id])
+        data[id]['title'] = input_title()
+        data[id]['text'] = input_text()
+        data[id]['date'] = datetime.datetime.now().strftime('%d-%m-%y (%H:%M:%S)')
+        save_note(data)
+        print('Заметка успешно сохранена')
+    else:
+        print('Заметка с таким номером не найдена!')
 
 # Удаляем заметку
 def del_note(data):
-    pass
+    id = input("Введите номер заметки для удаления: ")
+    if id in data.keys():
+        del data[id]
+        save_note(data)
+        print('Заметка №'+id+' успешно удалена!')
+    else: print('Заметка с таким номером не найдена!')
 
 # Поиск заметки по дате
 def dateSearch_note(data):
